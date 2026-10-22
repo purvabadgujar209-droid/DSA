@@ -14,8 +14,23 @@ class stack:
    
     def push(self,new_node):
        new_node.next=self.top
-       top=new_node
+       self.top=new_node
        
+    def pop(self):
+        if self.isempty():
+            print("Stack is empty")
+        else:
+            temp=self.top
+            print("Poped Elemenet:",temp.data)
+            self.top=self.top.next
+            temp=None
+            
+    # write a function to reverse the stack 
+    #another instance we have to create as st1 it is a reverse stack
+    
+
+        
+          
     def print(self):
         if self.isempty():
             print("Stack is empty")
@@ -25,12 +40,23 @@ class stack:
             while temp:
                  print(temp.data)
                  temp=temp.next
+                 
+    def  reverse(self):
+            temp=self.top
+            while temp:
+                st1.push(Node(temp.data))
+                temp=temp.next             
 st=stack()
+st1=stack()
 st.push(Node(10))
 st.push(Node(20))
 st.push(Node(30))
 st.push(Node(40))
 st.push(Node(50))
+st.pop()
+st.pop()
+st.pop()
 st.print()
-
+st.reverse()
+st1.print()
        
