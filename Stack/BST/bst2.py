@@ -31,7 +31,34 @@ class Binarysearchtree:
                         return
                     else:
                         temp=temp.right
+                        
+    def delete_node(self,rt,val):
+        if rt==None:               # as it is a recursive function 
+        
+            return rt
 
+        if val<rt.data:
+            rt.left=self.delete_node(rt.left,val)
+        elif val>rt.data:
+            rt.right=self.delete_node(rt.right,val)
+        else:
+            if rt.left is None:         # Node with right child only 
+                return rt.right
+            if rt.right is None:         # Node with left child only 
+                return rt.left
+            
+            # Node has both left and right children 
+            succ=self.get_successor(rt)
+            rt.data=succ.data
+            rt.right=self.delete_node(rt.right,succ.data)
+        return rt
+    def get_successor(self,temp):
+        temp=temp.right
+        while temp.left is not None:
+            temp=temp.left
+        return temp
+            
+                
     # Inorder Traversal (Left, Root, Right)  Inside the Class                    
     def inorder(self, temp): # Recursive Method
         if temp is None: #Terminating condition for recursive call
@@ -94,8 +121,12 @@ print("\nInorder:")
 bst.inorder(bst.root)
 print("\nTotal No. of leaf nodes:",bst.lcnt)
 print("\nNo. of Nodes:",bst.cnt)
-print("\nPreorder:")
-bst.preorder(bst.root)
-print("\nPostorder:")
-bst.postorder(bst.root)
-bst.find_minmax(bst.root)
+# print("\nPreorder:")
+# bst.preorder(bst.root)
+# print("\nPostorder:")
+# bst.postorder(bst.root)
+# bst.find_minmax(bst.root)
+
+bst.delete_node(bst.root,10)
+print("After Deleteion",end=" ")
+bst.inorder(bst.root)
