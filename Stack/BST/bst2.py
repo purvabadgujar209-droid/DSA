@@ -57,7 +57,17 @@ class Binarysearchtree:
         while temp.left is not None:
             temp=temp.left
         return temp
-            
+    def search(self,key):
+        temp=self.root
+        while temp :
+            if temp.data==key:
+                return True
+            elif key<temp.data:
+                temp=temp.left
+            else:
+                temp=temp.right
+        return False
+     
                 
     # Inorder Traversal (Left, Root, Right)  Inside the Class                    
     def inorder(self, temp): # Recursive Method
@@ -130,3 +140,8 @@ print("\nNo. of Nodes:",bst.cnt)
 bst.delete_node(bst.root,10)
 print("After Deleteion",end=" ")
 bst.inorder(bst.root)
+if bst.search(40):
+    print("\n Found the node")
+else:
+    print("\n Node not found")
+    
